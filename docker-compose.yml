@@ -1,0 +1,40 @@
+#
+# Build Images via docker-compose.yml (this file):
+# docker-compose build
+#
+# Start up Containers:
+# docker-compose up -d
+#
+# Poll logs:
+# docker logs -f my-lamp-web
+# docker logs -f my-lamp-db
+#
+# SSH into Containers:
+# docker exec -it my-lamp-web bash
+# docker exec -it my-lamp-db bash
+#
+
+version: "2"
+services:
+  web:
+    build: .
+    container_name: my-lamp-web
+    image: "realinteractive/my-lamp"
+    ports:
+      - "80:80"
+    links:
+      - db
+    volumes:
+      - ./deploy:/public_html
+    restart: always
+  db:
+    container_name: my-lamp-db
+    image: "mysql:5"
+    volumes:
+      - ./mysql:/etc/mysql/conf.d
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test_php_app
+      MYSQL_USER: test_app_user
+      MYSQL_PASSWORD: test_app_password
