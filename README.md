@@ -4,6 +4,7 @@ This project consists of two conatienrs. One for the Apache server and one for M
 
 ## Container Names
 my-lamp-web
+
 my-lamp-db
 
 ## Setup Steps
