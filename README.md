@@ -26,5 +26,8 @@ my-lamp-db
     docker logs -f my-lamp-web
     docker logs -f my-lamp-db
 
+### SSH Into Containers
+    docker exec -it my-lamp-web bash
+    docker exec -it my-lamp-db bash
 
 
