@@ -8,5 +8,17 @@ my-lamp-db
 
 ## Setup Steps
 
+1. Build the custom my-lamp image.
+    docker-compose build
+
+2. Start up the containers.
+    docker-compose up -d
+
+## Other Helpful Docker Commands
+
+### Poll Log Files
+    docker logs -f my-lamp-web
+    docker logs -f my-lamp-db
+
 
 
