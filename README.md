@@ -98,11 +98,11 @@ The first step in creating an Auto Scaling Group is to define a Launch Configura
 9. Give the Launch Configuration a name (ecs-launch-configuration).
 10. Select the instance IAM Role created earlier (ecs-instance-role).
 11. Click Advanced Details and locate the text field labeld User data and enter the following shell script:
-
+```
     #!/bin/bash
 
     echo ECS_CLUSTER=my-lamp-cluster > /etc/ecs/ecs.config
-
+```
 **NOTE: Be sure to change the ECS_CLUSTER variable to your cluster name.**
 
 User data is a place you can add custom shell scripts that the EC2 Instance will run right after booting. The shell script above puts the name of your ECS Cluster (my-ecs-cluster) into the ```/etc/ecs/ecs.config``` file. The ECS Container Agent knows to look into this file, so this is how you provide it the name of your ECS Cluster. If no name is specified, the Agent will use Default.
@@ -136,5 +136,6 @@ Initially, the Auto Scaling Group will show 5 “Desired Instances”, but 0 act
 # Credits/Thanks
 
 Most of this was stolen from: 
+
 Running Docker on AWS From the Ground Up
 http://www.ybrikman.com/writing/2015/11/11/running-docker-aws-ground-up/#deploying-docker-containers-on-ecs
