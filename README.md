@@ -38,10 +38,45 @@ my-lamp-db
 
 # AWS EC2 Deployments
 
-## Create Security Group (only need to do this once)
+## Create an Administrator Security Group (only need to do this once)
 
-## Create Key/Pair (only need to do this once)
+1. Select IAM from the main menu.
+2. Select Groups from the Details menu (left).
+3. Click the Create New Group button.
+4. Enter a group name (Administrators), and click the Next Step button.
+5. Select the AdministratorAccess policy, and click the Next Step button.
+6. Click the Create Group button.
 
+## Create New User with Key/Pair and Password (only need to do this once)
+
+In order to create a new Key/Pair, we need a new user.
+
+1. Select IAM from the main menu.
+2. Select Users from the Details menu (left).
+3. Click the Create New Users button.
+4. Enter a username (mturner), and ensure that Generate an access key for each user is selected.
+5. Click the Create button.
+6. Click the Download Credentials button to copy your key and secret to your drive, and then click the Close button.
+
+Next, we need to add our new user to the Security Group we created previously.
+
+1. Select IAM from the main menu.
+2. Select Users from the Details menu (left).
+3. Click on the new user name.
+4. Select the Groups tab and click the Add User to Groups button.
+5. Select the newly created Security Group (Administrators).
+6. Click the Add to Groups button.
+
+Next, we need to give the new user a password in order to access AWS Console.
+
+1. Select IAM from the main menu.
+2. Select Users from the Details menu (left).
+3. Click on the new user name.
+4. Select the Security Credentials tab.
+5. Click the Manage Password button.
+6. Select Assign auto generated password.
+7. Click the Download Credentials button to copy the password to your drive.
+8. Click the Close button.
 
 ## Create ECS Cluster
 
