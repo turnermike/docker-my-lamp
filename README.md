@@ -20,7 +20,7 @@ my-lamp-db
     docker-compose up -d
     ```
 
-## Other Helpful Docker Commands
+## Helpful Docker Commands
 
 ### Poll Log Files
     docker logs -f my-lamp-web
@@ -29,6 +29,12 @@ my-lamp-db
 ### SSH Into Containers
     docker exec -it my-lamp-web bash
     docker exec -it my-lamp-db bash
+
+## Helpful AWS Commands
+
+### SSH Into EC2 Instance
+    ssh -i key-pair-file-name.pem ec2-user@instance-public-ip
+    Ex: ssh -i mturner-key-pair-useast1.pem ec2-user@54.161.63.196
 
 # AWS EC2 Deployments
 
