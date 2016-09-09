@@ -136,7 +136,7 @@ The first step in creating an Auto Scaling Group is to define a Launch Configura
 6. Search for/locate Amazon ECS-Optimized Amazon Linux AMI and click the Select button.
 7. Select t2.micro Instance type for the free tier.
 8. Click the Next: Configure details button.
-9. Give the Launch Configuration a name (ecs-launch-configuration).
+9. Give the Launch Configuration a name (my-lamp-launch-config).
 10. Select the instance IAM Role created earlier (ecs-instance-role).
 11. Click Advanced Details and locate the text field labeld User data and enter the following shell script:
 ```
@@ -161,7 +161,7 @@ User data is a place you can add custom shell scripts that the EC2 Instance will
 
 Now that you’ve created a Launch Configuration, AWS should take you to a screen that is prompting you to create an Auto Scaling Group from that Launch Configuration. 
 
-1. Enter a Group name (ecs-auto-scaling-group).
+1. Enter a Group name (my-lamp-auto-scaling-group).
 2. Enter a Group size of 5. This will tell the Auto Scaling Group to initially launch 5 EC2 Instance.
 3. Select your desired Subnets. 
 4. Click the Next: Configure scaling policies button.
@@ -173,6 +173,38 @@ Now that you’ve created a Launch Configuration, AWS should take you to a scree
 
 Initially, the Auto Scaling Group will show 5 “Desired Instances”, but 0 actually launched Instances. If you wait a minute and refresh the list, the number of launched Instances will go to 5. Head back to the ECS Console, and you should now see five “Registered Container Instances” in your ECS Cluster:
 
+## Running Docker Containers in Your Cluster
+
+Now that you have a working Cluster, you can finally run some Docker containers in it. To do that, you first have to create an ECS Task, which defines the Docker image(s) to run, the resources (CPU, memory, ports) you need, what volumes to mount, etc.
+
+1. Select EC2 Container Service from the main menu.
+2. Select Task Definitions from the Amazon ECS menu (left).
+3. Click the Create New Task Definition button.
+4. Enter a Task Definition Name (my-lamp-task).
+5. Click the Add container button under Container Definitions.
+6. Enter a Container Name (my-lamp-container).
+7. Enter a Docker image to run (realinteractive/my-lamp).
+8. Leave the default Memory Limits (Hard limit 128) and map port 80 on the host to port 5000 in the container.
+9. Click the Add button.
+10. Click the Create button.
+
+Now it’s time to run the Task in your Cluster.
+
+1. Select EC2 Container Service from the main menu.
+2. Select Clusters from the Amazon ECS menu (left).
+3. Click on your cluster name (my-lamp-cluster).
+4. Select the Services tab, and click the Create button.
+5. Select the Task Definition created previously (my-lamp-task:1).
+6. Enter a Service name (my-lamp-service).
+7. Enter 4 in Number of tasks. 1 less task than the number of EC2 Instances.
+8. Click the Configure ELB button.
+9. Select Classic Load Balancer for ELB type.
+10. Select your service role (ecs-service-role) for Select IAM role for service.
+11. Select your load balancer (my-lamp-load-balancer) for ELB Name.
+12. Click the Save button.
+13. Click the Create Service button.
+14. Click the View Service button.
+15. Click the Events tab to see the deployment process.
 
 # Credits/Thanks
 
