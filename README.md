@@ -146,7 +146,7 @@ The first step in creating an Auto Scaling Group is to define a Launch Configura
 ```
 **NOTE: Be sure to change the ECS_CLUSTER variable to your cluster name.**
 
-User data is a place you can add custom shell scripts that the EC2 Instance will run right after booting. The shell script above puts the name of your ECS Cluster (my-ecs-cluster) into the ```/etc/ecs/ecs.config``` file. The ECS Container Agent knows to look into this file, so this is how you provide it the name of your ECS Cluster. If no name is specified, the Agent will use Default.
+User data is a place you can add custom shell scripts that the EC2 Instance will run right after booting. The shell script above puts the name of your ECS Cluster (my-lamp-cluster) into the ```/etc/ecs/ecs.config``` file. The ECS Container Agent knows to look into this file, so this is how you provide it the name of your ECS Cluster. If no name is specified, the Agent will use Default.
 
 12. Leave all other default settings and click the Next: Add Storage button.
 13. Leave all the default Storage configuration options and click the Next: Configure Security Group button.

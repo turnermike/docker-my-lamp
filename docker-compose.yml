@@ -3,7 +3,7 @@ services:
   web:
     build: .
     container_name: my-lamp-web
-    image: "realinteractive/my-lamp"
+    image: "hihatconsulting/my-lamp"
     ports:
       - "80:80"
     links:
