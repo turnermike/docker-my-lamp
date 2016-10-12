@@ -1,6 +1,6 @@
 <?php
 
-echo 'testing';
+echo 'testing 123';
 
 phpinfo();
 
