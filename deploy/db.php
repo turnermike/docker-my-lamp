@@ -13,4 +13,4 @@ foreach($dbh->query("Show variables like '%char%'") as $row) {
     printf("%s: %s<br />", htmlspecialchars($row[0]), htmlspecialchars($row[1]));
 }
 
-echo '<br />testing';
+echo '<br />testing 123 456';
