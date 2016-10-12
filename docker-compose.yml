@@ -14,6 +14,8 @@ services:
   db:
     container_name: my-lamp-db
     image: "mysql:5"
+    ports:
+      - "3600:3600"
     volumes:
       - ./mysql:/etc/mysql/conf.d
     restart: always

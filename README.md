@@ -173,7 +173,7 @@ Now that you’ve created a Launch Configuration, AWS should take you to a scree
 
 Initially, the Auto Scaling Group will show 5 “Desired Instances”, but 0 actually launched Instances. If you wait a minute and refresh the list, the number of launched Instances will go to 5. Head back to the ECS Console, and you should now see five “Registered Container Instances” in your ECS Cluster.
 
-NOTE: Wait for your instances to pass all status checks before continuing.
+**NOTE: Wait for your instances to pass all status checks before continuing.**
 
 ## Running Docker Containers in Your Cluster
 
