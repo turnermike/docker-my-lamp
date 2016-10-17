@@ -9,16 +9,15 @@ services:
     links:
       - db
     volumes:
-      - ./deploy:/public_html
+      - "./deploy:/public_html"
     restart: always
   db:
     container_name: my-lamp-db
     # image: "mysql:5"
     image: "hihatconsulting/my-lamp-db:latest"
-    # ports:
-    #   - "3600:3600"
     volumes:
-      - ./mysql:/etc/mysql/conf.d
+      - "./mysql:/etc/mysql/conf.d"
+      - "./.data/db:/var/lib/mysql"
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root

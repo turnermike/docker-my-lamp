@@ -139,7 +139,7 @@ The first step in creating an Auto Scaling Group is to define a Launch Configura
 9. Give the Launch Configuration a name (my-lamp-launch-config).
 10. Select the instance IAM Role created earlier (ecs-instance-role).
 11. Click Advanced Details and locate the text field labeld User data and enter the following shell script:
-```
+`````
     #!/bin/bash
 
     echo ECS_CLUSTER=my-lamp-cluster > /etc/ecs/ecs.config
