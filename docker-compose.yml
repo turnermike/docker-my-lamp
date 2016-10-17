@@ -21,7 +21,6 @@ services:
   db:
     container_name: my-lamp-db
     image: "mysql:5"
-    # image: "hihatconsulting/my-lamp-db:latest"
     volumes:
       - "./mysql:/etc/mysql/conf.d"
       - "./.data/db:/var/lib/mysql"
