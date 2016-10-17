@@ -11,6 +11,13 @@ services:
     volumes:
       - "./deploy:/public_html"
     restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_HOST: db
+      MYSQL_DATABASE: test_php_app
+      MYSQL_USER: test_app_user
+      MYSQL_PASSWORD: test_app_password
+
   db:
     container_name: my-lamp-db
     image: "mysql:5"
@@ -21,6 +28,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
+      MYSQL_HOST: db
       MYSQL_DATABASE: test_php_app
       MYSQL_USER: test_app_user
       MYSQL_PASSWORD: test_app_password

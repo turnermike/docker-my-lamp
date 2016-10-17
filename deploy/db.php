@@ -8,6 +8,19 @@ error_reporting(-1);
    PDO
    ========================================================================== */
 
+// get db creds from environment variables
+$host =     getenv('MYSQL_HOST');
+$db =       getenv('MYSQL_DATABASE');
+$user =     getenv('MYSQL_USER');
+$password = getenv('MYSQL_PASSWORD');
+
+echo '<br>host: ' . $host;
+echo '<br>db: ' . $db;
+echo '<br>user: ' . $user;
+echo '<br>password: ' . $password;
+echo '<br><br>';
+
+
 // $dsn = 'mysql:dbname=test_php_app;host=db';
 // $user = 'test_app_user';
 // $password = 'test_app_password';
@@ -18,7 +31,7 @@ $password = 'O#43Sf%!aE987';
 try {
     $dbh = new PDO($dsn, $user, $password);
 } catch (PDOException $e) {
-    echo 'Connection failed: ' . $e->getMessage();
+    echo '<br>Connection failed: ' . $e->getMessage();
 }
 
 foreach($dbh->query("Show variables like '%char%'") as $row) {
@@ -26,6 +39,8 @@ foreach($dbh->query("Show variables like '%char%'") as $row) {
 }
 
 echo '<br><br>testing abc123';
+
+
 
 /* ==========================================================================
    mysql_connect
