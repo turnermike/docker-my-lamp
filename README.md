@@ -36,6 +36,21 @@ my-lamp-db
     ssh -i key-pair-file-name.pem ec2-user@instance-public-ip
     Ex: ssh -i mturner-key-pair-useast1.pem ec2-user@54.161.63.196
 
+# AWS RDS Database
+
+## Create the Database and Aquire Credentials
+
+1. Select RDS from the main menu.
+2. Select Instances from the RDS menu (left).
+3. Click the Launch DB Instance button.
+4. Select Amazon Aurora, click Select.
+5. Select a DB Instance Class and select "No" for Multi-AZ Deployment. Enter the database name for DB Instance Identifier and enter a Master Username and Password. Click Next Step.
+6. Under Network & Security, leave all defaults except for VPC Security Groups. Please select the security group previously created (ssh-http-anywhere).
+7. Under Database Options, enter a DB Cluster Identifier, and Database name. Leave all others default.
+8. Click the Launch DB Instance button.
+9. Once the database has been created, test connectivity using Sequel Pro or command line.
+10. Import data.
+
 # AWS EC2 Deployments
 
 ## Create an Administrator Security Group (only need to do this once)
@@ -91,7 +106,7 @@ Next, we need to give the new user a password in order to access AWS Console.
 4. Select Classic Load Balancer, then click the Continue button.
 5. Enter a Load Balancer Name (my-lamp-load-balancer). Leave other settings at default.
 6. Click the Next: Assign Security Groups button.
-7. Choose Select an existing security group. Select your desired security group (my-lamp-load-balancer).
+7. Choose Select an existing security group. Select your desired security group (ssh-http-anywhere).
 8. Click the Next: Configure Security Settings button.
 9. Ignore any warnings at this step and click the Next: Configure Health Check button.
 10. Leave all default settings except for Ping Path, change to "/".
@@ -139,10 +154,10 @@ The first step in creating an Auto Scaling Group is to define a Launch Configura
 9. Give the Launch Configuration a name (my-lamp-launch-config).
 10. Select the instance IAM Role created earlier (ecs-instance-role).
 11. Click Advanced Details and locate the text field labeld User data and enter the following shell script:
-`````
-    #!/bin/bash
+```
+#!/bin/bash
 
-    echo ECS_CLUSTER=my-lamp-cluster > /etc/ecs/ecs.config
+echo ECS_CLUSTER=my-lamp-cluster > /etc/ecs/ecs.config
 ```
 **NOTE: Be sure to change the ECS_CLUSTER variable to your cluster name.**
 
@@ -177,6 +192,8 @@ Initially, the Auto Scaling Group will show 5 “Desired Instances”, but 0 act
 
 ## Running Docker Containers in Your Cluster
 
+### Task Definitions
+
 Now that you have a working Cluster, you can finally run some Docker containers in it. To do that, you first have to create an ECS Task, which defines the Docker image(s) to run, the resources (CPU, memory, ports) you need, what volumes to mount, etc.
 
 1. Select EC2 Container Service from the main menu.
@@ -207,6 +224,11 @@ Now it’s time to run the Task in your Cluster.
 13. Click the Create Service button.
 14. Click the View Service button.
 15. Click the Events tab to see the deployment process.
+
+
+
+
+
 
 # Credits/Thanks
 
